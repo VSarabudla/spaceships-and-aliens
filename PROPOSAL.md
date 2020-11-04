@@ -1,1 +1,7 @@
-Put your final project proposal here.
+# Project Proposal
+
+I would like to create a 2D shooter game with a player-controlled character that has to fight against aliens that spawn randomly with a projectile cannon. I’ve made a similar project in Snap! at a very elementary level, and I’d like to make a more robust application with Cinder with a lot more features. I’ve played first person shooters ever since I was a young boy and making my own shooter game in C++ will be a great accomplishment for me. Actually creating a playable game that can be run as a native application on a desktop will be an amazing feeling compared to the laggy Snap! app that ran in a browser.
+
+By the end of the first week, I’m planning to have finished creating a moving object (representing the character) in a 2D space. I would be able to move it using the WASD keys and shoot projectiles using a mouse click. In the second week, I would have different enemies start to spawn at random corners of the game window and move towards the main character. The enemies would shoot projectiles at the controllable character and a health point system would be implemented for the enemies and the player-controlled character. In the third week, I would implement custom sprites, a heads-up display, a background to the game, and audio for game actions. 
+
+Some stretch goals I can implement if I manage to finish the project before the deadline are implementing a leaderboard stored in a database, different levels, randomly generated game environments, and power-ups for the character in the game. A library that I may use for the leaderboard is SQLiteModernCpp along with SQLite3.
