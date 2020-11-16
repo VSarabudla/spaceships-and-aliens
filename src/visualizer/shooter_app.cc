@@ -1,23 +1,23 @@
 #include "visualizer/shooter_app.h"
 
+shooter::visualizer::ShooterApp::ShooterApp() : player_(glm::vec2(
+    getDisplay()->getWidth() / 2, getDisplay()->getHeight() / 2),
+                                                        kPlayerMovementSpeed) {
+  ci::app::setWindowSize(getDisplay()->getWidth(),
+                         getDisplay()->getHeight());
+}
+
 void shooter::visualizer::ShooterApp::update() {
   AppBase::update();
 }
 
 void shooter::visualizer::ShooterApp::draw() {
-  AppBase::draw();
+  ci::Color8u background_color(0, 66, 37);  // racing green
+  ci::gl::clear(background_color);
+
+  player_.Draw();
 }
 
 void shooter::visualizer::ShooterApp::keyDown(ci::app::KeyEvent event) {
-  switch (event.getCode()) {
-    case ci::app::KeyEvent::KEY_w:
-
-      break;
-    case ci::app::KeyEvent::KEY_a:
-      break;
-    case ci::app::KeyEvent::KEY_s:
-      break;
-    case ci::app::KeyEvent::KEY_d:
-      break;
-  }
+  player_.UpdatePosition(event);
 }

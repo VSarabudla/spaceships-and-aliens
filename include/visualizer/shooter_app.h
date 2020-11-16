@@ -13,14 +13,15 @@ namespace visualizer {
 
 class ShooterApp: public ci::app::App {
  public:
-  ShooterApp() = default;
+  ShooterApp();
 
   void update() override;
   void draw() override;
   void keyDown(ci::app::KeyEvent event) override;
 
+  const float kPlayerMovementSpeed = 20;
  private:
-
+  Player player_;
 };
 
 } // namespace visualizer
