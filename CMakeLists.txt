@@ -49,14 +49,14 @@ get_filename_component(APP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/" ABSOLUTE)
 
 include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
-list(APPEND CORE_SOURCE_FILES src/core/box.cc src/core/player.cc)
+list(APPEND CORE_SOURCE_FILES src/core/box.cc src/core/player.cc src/core/bullet.cc)
 
 list(APPEND SOURCE_FILES ${CORE_SOURCE_FILES} src/visualizer/shooter_app.cc)
 
 list(APPEND TEST_FILES)
 
 ci_make_app(
-        APP_NAME shoota
+        APP_NAME shooter-app
         CINDER_PATH ${CINDER_PATH}
         SOURCES apps/cinder_app_main.cc ${SOURCE_FILES}
         INCLUDES include
