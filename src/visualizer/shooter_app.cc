@@ -8,7 +8,9 @@ shooter::visualizer::ShooterApp::ShooterApp() : player_(glm::vec2(
 }
 
 void shooter::visualizer::ShooterApp::update() {
-  AppBase::update();
+  for (Bullet &bullet : projectiles_) {
+    bullet.UpdatePosition();
+  }
 }
 
 void shooter::visualizer::ShooterApp::draw() {
@@ -16,8 +18,16 @@ void shooter::visualizer::ShooterApp::draw() {
   ci::gl::clear(background_color);
 
   player_.Draw();
+
+  for (Bullet &bullet : projectiles_) {
+    bullet.Draw();
+  }
 }
 
 void shooter::visualizer::ShooterApp::keyDown(ci::app::KeyEvent event) {
   player_.UpdatePosition(event);
+}
+
+void shooter::visualizer::ShooterApp::mouseDown(ci::app::MouseEvent event) {
+  projectiles_.push_back(player_.ShootBullet(event.getPos()));
 }
