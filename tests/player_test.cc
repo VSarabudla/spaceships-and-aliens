@@ -6,12 +6,8 @@ TEST_CASE("WASD Movement") {
   SECTION("W movement interpreted correctly") {
     shooter::Player player(glm::vec2(500, 500), 20.0f);
 
-    player.UpdatePosition(ci::app::KeyEvent(nullptr,
-                                            ci::app::KeyEvent::KEY_w,
-                                            0,
-                                            0,
-                                            0,
-                                            0));
+    player.UpdatePosition(
+        ci::app::KeyEvent(nullptr, ci::app::KeyEvent::KEY_w, 0, 0, 0, 0));
 
     REQUIRE(player.GetPosition() == glm::vec2(500, 480));
   }
@@ -19,12 +15,8 @@ TEST_CASE("WASD Movement") {
   SECTION("A movement interpreted correctly") {
     shooter::Player player(glm::vec2(500, 500), 20.0f);
 
-    player.UpdatePosition(ci::app::KeyEvent(nullptr,
-                                            ci::app::KeyEvent::KEY_a,
-                                            0,
-                                            0,
-                                            0,
-                                            0));
+    player.UpdatePosition(
+        ci::app::KeyEvent(nullptr, ci::app::KeyEvent::KEY_a, 0, 0, 0, 0));
 
     REQUIRE(player.GetPosition() == glm::vec2(480, 500));
   }
@@ -32,12 +24,8 @@ TEST_CASE("WASD Movement") {
   SECTION("S movement interpreted correctly") {
     shooter::Player player(glm::vec2(500, 500), 20.0f);
 
-    player.UpdatePosition(ci::app::KeyEvent(nullptr,
-                                            ci::app::KeyEvent::KEY_s,
-                                            0,
-                                            0,
-                                            0,
-                                            0));
+    player.UpdatePosition(
+        ci::app::KeyEvent(nullptr, ci::app::KeyEvent::KEY_s, 0, 0, 0, 0));
 
     REQUIRE(player.GetPosition() == glm::vec2(500, 520));
   }
@@ -45,12 +33,8 @@ TEST_CASE("WASD Movement") {
   SECTION("D movement interpreted correctly") {
     shooter::Player player(glm::vec2(500, 500), 20.0f);
 
-    player.UpdatePosition(ci::app::KeyEvent(nullptr,
-                                            ci::app::KeyEvent::KEY_d,
-                                            0,
-                                            0,
-                                            0,
-                                            0));
+    player.UpdatePosition(
+        ci::app::KeyEvent(nullptr, ci::app::KeyEvent::KEY_d, 0, 0, 0, 0));
 
     REQUIRE(player.GetPosition() == glm::vec2(520, 500));
   }
@@ -58,12 +42,8 @@ TEST_CASE("WASD Movement") {
   SECTION("G movement interpreted correctly") {
     shooter::Player player(glm::vec2(500, 500), 20.0f);
 
-    player.UpdatePosition(ci::app::KeyEvent(nullptr,
-                                            ci::app::KeyEvent::KEY_g,
-                                            0,
-                                            0,
-                                            0,
-                                            0));
+    player.UpdatePosition(
+        ci::app::KeyEvent(nullptr, ci::app::KeyEvent::KEY_g, 0, 0, 0, 0));
 
     REQUIRE(player.GetPosition() == glm::vec2(500, 500));
   }

@@ -4,14 +4,16 @@
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
-
 #include "core/player.h"
 
 namespace shooter {
 
 namespace visualizer {
 
-class ShooterApp: public ci::app::App {
+/**
+ * 2D-shooter where a player fights against aliens
+ */
+class ShooterApp : public ci::app::App {
  public:
   ShooterApp();
 
@@ -27,8 +29,8 @@ class ShooterApp: public ci::app::App {
   std::vector<Bullet> projectiles_;
 };
 
-} // namespace visualizer
+}  // namespace visualizer
 
-} // namespace shooter
+}  // namespace shooter
 
-#endif //FINAL_PROJECT_SHOOTER_APP_H
+#endif  // FINAL_PROJECT_SHOOTER_APP_H

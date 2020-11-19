@@ -29,8 +29,9 @@ void shooter::Player::Draw() const {
 shooter::Bullet shooter::Player::ShootBullet(const ci::ivec2 &mouse_position) {
   return shooter::Bullet(position_,
                          movement_speed_ * glm::normalize(glm::vec2(
-                             mouse_position.x - position_.x,
-                             mouse_position.y - position_.y)), movement_speed_);
+                                               mouse_position.x - position_.x,
+                                               mouse_position.y - position_.y)),
+                         movement_speed_);
 }
 
 glm::vec2 shooter::Player::GetPosition() const {

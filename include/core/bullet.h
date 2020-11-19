@@ -5,12 +5,28 @@
 
 namespace shooter {
 
+/**
+ * Represents a shot bullet
+ */
 class Bullet {
  public:
+  /**
+   * Creates a Bullet object
+   *
+   * @param position - position of bullet
+   * @param velocity - velocity of bullet
+   * @param radius - radius of bullet
+   */
   Bullet(const glm::vec2 &position, const glm::vec2 &velocity, float radius);
 
+  /**
+   * Draws the bullet in the Cinder application
+   */
   void Draw() const;
 
+  /**
+   * Updates the location of the bullet based on position and velocity
+   */
   void UpdatePosition();
 
   glm::vec2 GetVelocity() const;
@@ -23,6 +39,6 @@ class Bullet {
   float radius_;
 };
 
-} // namespace shooter
+}  // namespace shooter
 
-#endif //FINAL_PROJECT_BULLET_H
+#endif  // FINAL_PROJECT_BULLET_H
