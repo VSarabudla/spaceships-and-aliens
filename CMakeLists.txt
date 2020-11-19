@@ -49,11 +49,11 @@ get_filename_component(APP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/" ABSOLUTE)
 
 include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
-list(APPEND CORE_SOURCE_FILES src/core/box.cc src/core/player.cc src/core/bullet.cc)
+list(APPEND CORE_SOURCE_FILES src/core/player.cc src/core/bullet.cc)
 
 list(APPEND SOURCE_FILES ${CORE_SOURCE_FILES} src/visualizer/shooter_app.cc)
 
-list(APPEND TEST_FILES)
+list(APPEND TEST_FILES tests/bullet_test.cc tests/player_test.cc)
 
 ci_make_app(
         APP_NAME shooter-app
@@ -64,7 +64,7 @@ ci_make_app(
 )
 
 ci_make_app(
-        APP_NAME ideal-gas-test
+        APP_NAME shooter-test
         CINDER_PATH ${CINDER_PATH}
         SOURCES tests/test_main.cc ${SOURCE_FILES} ${TEST_FILES}
         INCLUDES include

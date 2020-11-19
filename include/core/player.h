@@ -16,6 +16,9 @@ class Player {
   void Draw() const;
 
   Bullet ShootBullet(const ci::ivec2& mouse_position);
+
+  glm::vec2 GetPosition() const;
+
  private:
   glm::vec2 position_;
   float movement_speed_;

@@ -12,6 +12,11 @@ class Bullet {
   void Draw() const;
 
   void UpdatePosition();
+
+  glm::vec2 GetVelocity() const;
+
+  glm::vec2 GetPosition() const;
+
  private:
   glm::vec2 position_;
   glm::vec2 velocity_;

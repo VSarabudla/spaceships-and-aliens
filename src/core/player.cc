@@ -32,3 +32,7 @@ shooter::Bullet shooter::Player::ShootBullet(const ci::ivec2 &mouse_position) {
                              mouse_position.x - position_.x,
                              mouse_position.y - position_.y)), movement_speed_);
 }
+
+glm::vec2 shooter::Player::GetPosition() const {
+  return position_;
+}

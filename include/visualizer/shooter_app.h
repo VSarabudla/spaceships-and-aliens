@@ -21,6 +21,7 @@ class ShooterApp: public ci::app::App {
   void mouseDown(ci::app::MouseEvent event) override;
 
   const float kPlayerMovementSpeed = 20;
+
  private:
   Player player_;
   std::vector<Bullet> projectiles_;

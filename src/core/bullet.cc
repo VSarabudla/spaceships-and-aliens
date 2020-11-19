@@ -14,3 +14,11 @@ void shooter::Bullet::Draw() const {
 void shooter::Bullet::UpdatePosition() {
   position_ += velocity_;
 }
+
+glm::vec2 shooter::Bullet::GetVelocity() const {
+  return velocity_;
+}
+
+glm::vec2 shooter::Bullet::GetPosition() const {
+  return position_;
+}
