@@ -21,11 +21,24 @@ class Player {
   Player(const glm::vec2 &position, float movement_speed);
 
   /**
-   * Updates Player position based on what key is pressed by the user
-   *
-   * @param event - KeyEvent with information about what key is pressed
+   * Move player upwards based on movement speed
    */
-  void UpdatePosition(const ci::app::KeyEvent &event);
+  void MoveUp();
+
+  /**
+   * Move player downwards based on movement speed
+   */
+  void MoveDown();
+
+  /**
+   * Move player left based on movement speed
+   */
+  void MoveLeft();
+
+  /**
+   * Move player right based on movement speed
+   */
+  void MoveRight();
 
   /**
    * Draws the player in the Cinder application
