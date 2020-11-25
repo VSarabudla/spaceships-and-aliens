@@ -11,6 +11,23 @@ void shooter::visualizer::ShooterApp::update() {
   for (Bullet &bullet : projectiles_) {
     bullet.UpdatePosition();
   }
+
+  for (int held_key : held_keys_) {
+    switch (held_key) {
+      case ci::app::KeyEvent::KEY_w:
+        player_.MoveUp();
+        break;
+      case ci::app::KeyEvent::KEY_a:
+        player_.MoveLeft();
+        break;
+      case ci::app::KeyEvent::KEY_s:
+        player_.MoveDown();
+        break;
+      case ci::app::KeyEvent::KEY_d:
+        player_.MoveRight();
+        break;
+    }
+  }
 }
 
 void shooter::visualizer::ShooterApp::draw() {
@@ -25,7 +42,11 @@ void shooter::visualizer::ShooterApp::draw() {
 }
 
 void shooter::visualizer::ShooterApp::keyDown(ci::app::KeyEvent event) {
-  player_.UpdatePosition(event);
+  held_keys_.insert(event.getCode());
+}
+
+void shooter::visualizer::ShooterApp::keyUp(ci::app::KeyEvent event) {
+  held_keys_.erase(event.getCode());
 }
 
 void shooter::visualizer::ShooterApp::mouseDown(ci::app::MouseEvent event) {

@@ -20,6 +20,7 @@ class ShooterApp : public ci::app::App {
   void update() override;
   void draw() override;
   void keyDown(ci::app::KeyEvent event) override;
+  void keyUp(ci::app::KeyEvent event) override;
   void mouseDown(ci::app::MouseEvent event) override;
 
   const float kPlayerMovementSpeed = 20;
@@ -27,6 +28,7 @@ class ShooterApp : public ci::app::App {
  private:
   Player player_;
   std::vector<Bullet> projectiles_;
+  std::set<int> held_keys_;
 };
 
 }  // namespace visualizer
