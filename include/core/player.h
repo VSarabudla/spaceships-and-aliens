@@ -54,7 +54,7 @@ class Player {
    */
   Bullet ShootBullet(const ci::ivec2 &mouse_position);
 
-  glm::vec2 GetPosition() const;
+  glm::vec2 GetPosition() const &;
 
  private:
   glm::vec2 position_;

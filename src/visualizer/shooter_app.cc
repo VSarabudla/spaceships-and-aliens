@@ -8,8 +8,16 @@ shooter::visualizer::ShooterApp::ShooterApp()
 }
 
 void shooter::visualizer::ShooterApp::update() {
+  size_t i = 0;
   for (Bullet &bullet : projectiles_) {
+    if (bullet.GetPosition().x < 0 || bullet.GetPosition().y < 0 ||
+        bullet.GetPosition().x > getWindowWidth() ||
+        bullet.GetPosition().y > getWindowHeight()) {
+      projectiles_.erase(projectiles_.begin() + i);
+      continue;
+    }
     bullet.UpdatePosition();
+    i++;
   }
 
   for (int held_key : held_keys_) {
