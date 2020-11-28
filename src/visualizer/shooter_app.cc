@@ -53,6 +53,10 @@ void shooter::visualizer::ShooterApp::draw() {
 
   DrawPlayer();
 
+  for (Alien &alien : aliens_) {
+    DrawAlien(alien);
+  }
+
   for (Bullet &bullet : projectiles_) {
     bullet.Draw();
   }
@@ -82,6 +86,20 @@ void shooter::visualizer::ShooterApp::DrawPlayer() {
   ci::gl::draw(player_sprite_, glm::vec2((-player_sprite_->getWidth() / 2),
                                          (-player_sprite_->getHeight() / 2 -
                                           player_sprite_->getHeight() / 25)));
+  ci::gl::popModelMatrix();
+}
+
+void shooter::visualizer::ShooterApp::DrawAlien(const shooter::Alien &alien) {
+  ci::gl::pushModelMatrix();
+  ci::gl::translate(alien.GetPosition().x, alien.GetPosition().y);
+  ci::gl::rotate(-AngleBetween(
+      glm::normalize(glm::vec2(0, 1)),
+      glm::normalize(player_.GetPosition() - alien.GetPosition())));
+
+  // draw alien sprite in transformed matrix
+  ci::gl::color(ci::Color("white"));
+  ci::gl::draw(alien_sprite_, glm::vec2((-alien_sprite_->getWidth() / 2),
+                                        (-alien_sprite_->getHeight() / 2)));
   ci::gl::popModelMatrix();
 }
 

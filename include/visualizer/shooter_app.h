@@ -33,6 +33,11 @@ class ShooterApp : public ci::app::App {
    */
   void DrawPlayer();
 
+  /**
+   * Draws a given alien's sprite in application window
+   */
+  void DrawAlien(const Alien& alien);
+
   float AngleBetween(const glm::vec2& a, const glm::vec2& b);
 
   Player player_;
