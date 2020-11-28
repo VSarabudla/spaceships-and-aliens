@@ -12,6 +12,8 @@ shooter::visualizer::ShooterApp::ShooterApp()
 void shooter::visualizer::ShooterApp::setup() {
   player_sprite_ =
       ci::gl ::Texture::create(loadImage(loadResource("spaceship2.png")));
+  alien_sprite_ =
+      ci::gl::Texture::create(loadImage(loadResource("alien1.png")));
 }
 
 void shooter::visualizer::ShooterApp::update() {
@@ -46,21 +48,10 @@ void shooter::visualizer::ShooterApp::update() {
 }
 
 void shooter::visualizer::ShooterApp::draw() {
-  ci::Color8u background_color(0, 66, 37);  // racing green
+  ci::Color8u background_color(0, 0, 0);  // black
   ci::gl::clear(background_color);
 
-  ci::gl::pushModelMatrix();
-  ci::gl::translate(player_.GetPosition().x, player_.GetPosition().y);
-  ci::gl::rotate(-angleBetween(
-      glm::normalize(glm::vec2(0, 1)),
-      glm::normalize(glm::vec2(getMousePos()) - player_.GetPosition())));
-
-  // draw player sprite in model matrix
-  ci::gl::color(ci::Color("white"));
-  ci::gl::draw(player_sprite_, glm::vec2((-player_sprite_->getWidth() / 2),
-                                         (-player_sprite_->getHeight() / 2 -
-                                          player_sprite_->getHeight() / 25)));
-  ci::gl::popModelMatrix();
+  DrawPlayer();
 
   for (Bullet &bullet : projectiles_) {
     bullet.Draw();
@@ -79,9 +70,24 @@ void shooter::visualizer::ShooterApp::mouseDown(ci::app::MouseEvent event) {
   projectiles_.push_back(player_.ShootBullet(event.getPos()));
 }
 
+void shooter::visualizer::ShooterApp::DrawPlayer() {
+  ci::gl::pushModelMatrix();
+  ci::gl::translate(player_.GetPosition().x, player_.GetPosition().y);
+  ci::gl::rotate(-AngleBetween(
+      glm::normalize(glm::vec2(0, 1)),
+      glm::normalize(glm::vec2(getMousePos()) - player_.GetPosition())));
+
+  // draw player sprite in transformed matrix
+  ci::gl::color(ci::Color("white"));
+  ci::gl::draw(player_sprite_, glm::vec2((-player_sprite_->getWidth() / 2),
+                                         (-player_sprite_->getHeight() / 2 -
+                                          player_sprite_->getHeight() / 25)));
+  ci::gl::popModelMatrix();
+}
+
 // Code derived from:
 // https://forum.libcinder.org/topic/a-few-missing-methods-in-cinder
-float shooter::visualizer::ShooterApp::angleBetween(const glm::vec2 &a,
+float shooter::visualizer::ShooterApp::AngleBetween(const glm::vec2 &a,
                                                     const glm::vec2 &b) {
   return -1.0f * std::atan2(a.x * b.y - a.y * b.x, a.x * b.x + a.y * b.y);
 }
