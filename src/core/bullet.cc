@@ -1,12 +1,12 @@
 #include "core/bullet.h"
 
 shooter::Bullet::Bullet(const glm::vec2 &position, const glm::vec2 &velocity,
-                        float radius)
-    : position_(position), velocity_(velocity), radius_(radius) {
+                        float radius, ci::Color color)
+    : position_(position), velocity_(velocity), radius_(radius), color_(color) {
 }
 
 void shooter::Bullet::Draw() const {
-  ci::gl::color(ci::Color("black"));
+  ci::gl::color(ci::Color("white"));
   ci::gl::drawSolidCircle(position_, radius_);
 }
 

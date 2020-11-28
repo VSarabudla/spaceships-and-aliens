@@ -16,8 +16,10 @@ class Bullet {
    * @param position - position of bullet
    * @param velocity - velocity of bullet
    * @param radius - radius of bullet
+   * @param color - color of bullet
    */
-  Bullet(const glm::vec2 &position, const glm::vec2 &velocity, float radius);
+  Bullet(const glm::vec2 &position, const glm::vec2 &velocity, float radius,
+         ci::Color color);
 
   /**
    * Draws the bullet in the Cinder application
@@ -33,10 +35,13 @@ class Bullet {
 
   glm::vec2 GetPosition() const;
 
+  ci::Color GetColor() const;
+
  private:
   glm::vec2 position_;
   glm::vec2 velocity_;
   float radius_;
+  ci::Color color_;
 };
 
 }  // namespace shooter

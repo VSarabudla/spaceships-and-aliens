@@ -9,7 +9,7 @@ shooter::Bullet shooter::Player::ShootBullet(const ci::ivec2 &mouse_position) {
                          movement_speed_ * glm::normalize(glm::vec2(
                                                mouse_position.x - position_.x,
                                                mouse_position.y - position_.y)),
-                         movement_speed_ / 2);
+                         movement_speed_ / 2, ci::Color("white"));
 }
 
 glm::vec2 shooter::Player::GetPosition() const & {
