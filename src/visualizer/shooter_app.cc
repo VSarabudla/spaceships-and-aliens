@@ -1,5 +1,7 @@
 #include "visualizer/shooter_app.h"
 
+#include <cmath>
+
 shooter::visualizer::ShooterApp::ShooterApp()
     : player_(glm::vec2(getDisplay()->getWidth() / 2,
                         getDisplay()->getHeight() / 2),
@@ -9,7 +11,7 @@ shooter::visualizer::ShooterApp::ShooterApp()
 
 void shooter::visualizer::ShooterApp::setup() {
   player_sprite_ =
-      ci::gl ::Texture::create(loadImage(loadResource("player2.png")));
+      ci::gl ::Texture::create(loadImage(loadResource("spaceship2.png")));
 }
 
 void shooter::visualizer::ShooterApp::update() {
@@ -47,15 +49,18 @@ void shooter::visualizer::ShooterApp::draw() {
   ci::Color8u background_color(0, 66, 37);  // racing green
   ci::gl::clear(background_color);
 
-  // draw player sprites
-  ci::gl::color(ci::Color("white"));
-  ci::gl::draw(
-      player_sprite_,
-      glm::vec2((player_.GetPosition().x - player_sprite_->getWidth() / 2),
-                (player_.GetPosition().y - player_sprite_->getHeight() / 2 -
-                 player_sprite_->getHeight() / 30)));
+  ci::gl::pushModelMatrix();
+  ci::gl::translate(player_.GetPosition().x, player_.GetPosition().y);
+  ci::gl::rotate(-angleBetween(
+      glm::normalize(glm::vec2(0, 1)),
+      glm::normalize(glm::vec2(getMousePos()) - player_.GetPosition())));
 
-  player_.Draw();
+  // draw player sprite in model matrix
+  ci::gl::color(ci::Color("white"));
+  ci::gl::draw(player_sprite_, glm::vec2((-player_sprite_->getWidth() / 2),
+                                         (-player_sprite_->getHeight() / 2 -
+                                          player_sprite_->getHeight() / 25)));
+  ci::gl::popModelMatrix();
 
   for (Bullet &bullet : projectiles_) {
     bullet.Draw();
@@ -72,4 +77,11 @@ void shooter::visualizer::ShooterApp::keyUp(ci::app::KeyEvent event) {
 
 void shooter::visualizer::ShooterApp::mouseDown(ci::app::MouseEvent event) {
   projectiles_.push_back(player_.ShootBullet(event.getPos()));
+}
+
+// Code derived from:
+// https://forum.libcinder.org/topic/a-few-missing-methods-in-cinder
+float shooter::visualizer::ShooterApp::angleBetween(const glm::vec2 &a,
+                                                    const glm::vec2 &b) {
+  return -1.0f * std::atan2(a.x * b.y - a.y * b.x, a.x * b.x + a.y * b.y);
 }

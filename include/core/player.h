@@ -41,11 +41,6 @@ class Player {
   void MoveRight();
 
   /**
-   * Draws the player in the Cinder application
-   */
-  void Draw() const;
-
-  /**
    * Returns a Bullet object traveling in the direction where the user clicks in
    * the application window
    *

@@ -27,6 +27,8 @@ class ShooterApp : public ci::app::App {
   const float kPlayerMovementSpeed = 20;
 
  private:
+  float angleBetween(const glm::vec2& a, const glm::vec2& b);
+
   Player player_;
   ci::gl::TextureRef player_sprite_;
   ci::gl::TextureRef alien_sprite_;
