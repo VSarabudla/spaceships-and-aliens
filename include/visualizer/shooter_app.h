@@ -17,6 +17,7 @@ class ShooterApp : public ci::app::App {
  public:
   ShooterApp();
 
+  void setup() override;
   void update() override;
   void draw() override;
   void keyDown(ci::app::KeyEvent event) override;
@@ -27,6 +28,8 @@ class ShooterApp : public ci::app::App {
 
  private:
   Player player_;
+  ci::gl::TextureRef player_sprite_;
+  ci::gl::TextureRef alien_sprite_;
   std::vector<Bullet> projectiles_;
   std::set<int> held_keys_;
 };

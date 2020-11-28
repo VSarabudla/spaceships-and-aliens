@@ -60,7 +60,6 @@ ci_make_app(
         CINDER_PATH ${CINDER_PATH}
         SOURCES apps/cinder_app_main.cc ${SOURCE_FILES}
         INCLUDES include
-        BLOCKS Box2D
 )
 
 ci_make_app(

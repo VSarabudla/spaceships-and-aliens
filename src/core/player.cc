@@ -5,8 +5,8 @@ shooter::Player::Player(const glm::vec2 &position, float movement_speed)
 }
 
 void shooter::Player::Draw() const {
-  ci::gl::color(ci::Color("green"));
-  ci::gl::drawSolidCircle(position_, movement_speed_);
+  ci::gl::color(ci::Color("white"));
+  ci::gl::drawStrokedCircle(position_, movement_speed_);
 }
 
 shooter::Bullet shooter::Player::ShootBullet(const ci::ivec2 &mouse_position) {
