@@ -27,6 +27,11 @@ class ShooterApp : public ci::app::App {
 
   const float kPlayerMovementSpeed = 10;
 
+  const float kAlienMovementSpeed = 15;
+
+  // seconds between aliens spawning
+  const double kAlienSpawnRate = 2.0;
+
  private:
   /**
    * Draws player sprite in application window
@@ -46,6 +51,7 @@ class ShooterApp : public ci::app::App {
   std::vector<Alien> aliens_;
   std::vector<Bullet> projectiles_;
   std::set<int> held_keys_;
+  ci::Timer event_timer_;
 };
 
 }  // namespace visualizer

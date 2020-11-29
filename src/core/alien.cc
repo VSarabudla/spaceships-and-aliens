@@ -7,7 +7,7 @@ shooter::Alien::Alien(const glm::vec2 &position, float movement_speed)
 shooter::Bullet shooter::Alien::ShootBullet(const glm::vec2 &player_position) {
   return shooter::Bullet(
       position_, movement_speed_ * glm::normalize(player_position - position_),
-      movement_speed_ / 2, ci::Color("green"));
+      movement_speed_, ci::Color("green"));
 }
 
 glm::vec2 shooter::Alien::GetPosition() const & {

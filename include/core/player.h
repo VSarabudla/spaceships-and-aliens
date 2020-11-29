@@ -21,22 +21,22 @@ class Player {
   Player(const glm::vec2 &position, float movement_speed);
 
   /**
-   * Move player upwards based on movement speed
+   * Moves player upwards based on movement speed
    */
   void MoveUp();
 
   /**
-   * Move player downwards based on movement speed
+   * Moves player downwards based on movement speed
    */
   void MoveDown();
 
   /**
-   * Move player left based on movement speed
+   * Moves player left based on movement speed
    */
   void MoveLeft();
 
   /**
-   * Move player right based on movement speed
+   * Moves player right based on movement speed
    */
   void MoveRight();
 
@@ -45,7 +45,7 @@ class Player {
    * the application window
    *
    * @param mouse_position
-   * @return
+   * @return Bullet traveling in the direction where the user clicks
    */
   Bullet ShootBullet(const ci::ivec2 &mouse_position);
 

@@ -1,6 +1,7 @@
 #ifndef FINAL_PROJECT_ALIEN_H
 #define FINAL_PROJECT_ALIEN_H
 
+#include "cinder/app/App.h"
 #include "cinder/gl/gl.h"
 #include "core/bullet.h"
 
@@ -17,22 +18,22 @@ class Alien {
   Alien(const glm::vec2 &position, float movement_speed);
 
   /**
-   * Move alien upwards based on movement speed
+   * Moves alien upwards based on movement speed
    */
   void MoveUp();
 
   /**
-   * Move alien downwards based on movement speed
+   * Moves alien downwards based on movement speed
    */
   void MoveDown();
 
   /**
-   * Move alien left based on movement speed
+   * Moves alien left based on movement speed
    */
   void MoveLeft();
 
   /**
-   * Move alien right based on movement speed
+   * Moves alien right based on movement speed
    */
   void MoveRight();
 

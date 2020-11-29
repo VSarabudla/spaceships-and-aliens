@@ -10,13 +10,21 @@ shooter::visualizer::ShooterApp::ShooterApp()
 }
 
 void shooter::visualizer::ShooterApp::setup() {
+  // load sprites
   player_sprite_ =
       ci::gl ::Texture::create(loadImage(loadResource("spaceship2.png")));
   alien_sprite_ =
       ci::gl::Texture::create(loadImage(loadResource("alien1.png")));
+
+  // use time to seed random number generator
+  srand(static_cast<int>(std::time(nullptr)));
+
+  // initialize event timer
+  event_timer_ = ci::Timer(true);
 }
 
 void shooter::visualizer::ShooterApp::update() {
+  // remove bullets outside of application window
   size_t i = 0;
   for (Bullet &bullet : projectiles_) {
     if (bullet.GetPosition().x < 0 || bullet.GetPosition().y < 0 ||
@@ -27,6 +35,16 @@ void shooter::visualizer::ShooterApp::update() {
     }
     bullet.UpdatePosition();
     i++;
+  }
+
+  if (event_timer_.getSeconds() > kAlienSpawnRate) {
+    aliens_.emplace_back(
+        glm::vec2(rand() % getWindowWidth(), rand() % getWindowHeight()),
+        kAlienMovementSpeed);
+    for (Alien &alien : aliens_) {
+      projectiles_.push_back(alien.ShootBullet(player_.GetPosition()));
+    }
+    event_timer_.start();
   }
 
   for (int held_key : held_keys_) {
@@ -53,7 +71,7 @@ void shooter::visualizer::ShooterApp::draw() {
 
   DrawPlayer();
 
-  for (Alien &alien : aliens_) {
+  for (const Alien &alien : aliens_) {
     DrawAlien(alien);
   }
 

@@ -6,7 +6,7 @@ shooter::Bullet::Bullet(const glm::vec2 &position, const glm::vec2 &velocity,
 }
 
 void shooter::Bullet::Draw() const {
-  ci::gl::color(ci::Color("white"));
+  ci::gl::color(color_);
   ci::gl::drawSolidCircle(position_, radius_);
 }
 
