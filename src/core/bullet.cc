@@ -21,3 +21,7 @@ glm::vec2 shooter::Bullet::GetVelocity() const {
 glm::vec2 shooter::Bullet::GetPosition() const {
   return position_;
 }
+
+float shooter::Bullet::GetRadius() const {
+  return radius_;
+}

@@ -37,6 +37,8 @@ class Bullet {
 
   ci::Color GetColor() const;
 
+  float GetRadius() const;
+
  private:
   glm::vec2 position_;
   glm::vec2 velocity_;
