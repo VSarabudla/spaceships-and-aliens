@@ -1,10 +1,14 @@
 #include "core/player.h"
 
-shooter::Player::Player(const glm::vec2 &position, float movement_speed)
-    : position_(position), movement_speed_(movement_speed) {
+shooter::Player::Player(const glm::vec2& position, float radius,
+                        float movement_speed, int health_points)
+    : position_(position),
+      radius_(radius),
+      movement_speed_(movement_speed),
+      health_points_(health_points) {
 }
 
-shooter::Bullet shooter::Player::ShootBullet(const ci::ivec2 &mouse_position) {
+shooter::Bullet shooter::Player::ShootBullet(const ci::ivec2& mouse_position) {
   return shooter::Bullet(
       position_,
       2 * movement_speed_ *
@@ -13,7 +17,7 @@ shooter::Bullet shooter::Player::ShootBullet(const ci::ivec2 &mouse_position) {
       movement_speed_ / 2, ci::Color("white"));
 }
 
-glm::vec2 shooter::Player::GetPosition() const & {
+glm::vec2 shooter::Player::GetPosition() const& {
   return position_;
 }
 

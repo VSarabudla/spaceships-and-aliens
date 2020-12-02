@@ -25,8 +25,9 @@ class ShooterApp : public ci::app::App {
   void keyUp(ci::app::KeyEvent event) override;
   void mouseDown(ci::app::MouseEvent event) override;
 
+  const int kPlayerHealthPoints = 5;
   const float kPlayerMovementSpeed = 10;
-
+  const int kAlienHealthPoints = 5;
   const float kAlienMovementSpeed = 15;
 
   // seconds between aliens spawning
@@ -43,7 +44,7 @@ class ShooterApp : public ci::app::App {
    */
   void DrawAlien(const Alien& alien);
 
-  float AngleBetween(const glm::vec2& a, const glm::vec2& b);
+  static float AngleBetween(const glm::vec2& a, const glm::vec2& b);
 
   Player player_;
   ci::gl::TextureRef player_sprite_;

@@ -13,9 +13,12 @@ class Alien {
    * Creates an Alien object
    *
    * @param position - position of alien
+   * @param radius - radius of alien sprite
    * @param movement_speed - movement speed of alien
+   * @param health_points - health points of alien
    */
-  Alien(const glm::vec2 &position, float movement_speed);
+  Alien(const glm::vec2 &position, float radius, float movement_speed,
+        int health_points);
 
   /**
    * Moves alien upwards based on movement speed
@@ -50,7 +53,9 @@ class Alien {
 
  private:
   glm::vec2 position_;
+  float radius_;
   float movement_speed_;
+  int health_points_;
 };
 
 }  // namespace shooter

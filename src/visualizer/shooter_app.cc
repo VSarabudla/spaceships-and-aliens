@@ -2,10 +2,7 @@
 
 #include <cmath>
 
-shooter::visualizer::ShooterApp::ShooterApp()
-    : player_(glm::vec2(getDisplay()->getWidth() / 2,
-                        getDisplay()->getHeight() / 2),
-              kPlayerMovementSpeed) {
+shooter::visualizer::ShooterApp::ShooterApp() {
   ci::app::setWindowSize(getDisplay()->getWidth(), getDisplay()->getHeight());
 }
 
@@ -15,6 +12,12 @@ void shooter::visualizer::ShooterApp::setup() {
       ci::gl ::Texture::create(loadImage(loadResource("spaceship2.png")));
   alien_sprite_ =
       ci::gl::Texture::create(loadImage(loadResource("alien1.png")));
+
+  // initialize player
+  player_ = Player(
+      glm::vec2(getDisplay()->getWidth() / 2, getDisplay()->getHeight() / 2),
+      player_sprite_->getWidth() / 2, kPlayerMovementSpeed,
+      kPlayerHealthPoints);
 
   // use time to seed random number generator
   srand(static_cast<int>(std::time(nullptr)));
@@ -37,10 +40,11 @@ void shooter::visualizer::ShooterApp::update() {
     i++;
   }
 
+  // spawn aliens periodically that shoot at player
   if (event_timer_.getSeconds() > kAlienSpawnRate) {
     aliens_.emplace_back(
         glm::vec2(rand() % getWindowWidth(), rand() % getWindowHeight()),
-        kAlienMovementSpeed);
+        alien_sprite_->getWidth() / 2, kAlienMovementSpeed, kAlienHealthPoints);
     for (Alien &alien : aliens_) {
       projectiles_.push_back(alien.ShootBullet(player_.GetPosition()));
     }

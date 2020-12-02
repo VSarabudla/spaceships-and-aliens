@@ -12,13 +12,18 @@ namespace shooter {
  */
 class Player {
  public:
+  Player() = default;
+
   /**
    * Creates a Player object
    *
    * @param position - position of player
+   * @param radius - radius of player sprite
    * @param movement_speed - movement speed of player when using WASD controls
+   * @param health_points - health points of player
    */
-  Player(const glm::vec2 &position, float movement_speed);
+  Player(const glm::vec2 &position, float radius, float movement_speed,
+         int health_points);
 
   /**
    * Moves player upwards based on movement speed
@@ -53,7 +58,9 @@ class Player {
 
  private:
   glm::vec2 position_;
+  float radius_;
   float movement_speed_;
+  int health_points_;
 };
 
 }  // namespace shooter
