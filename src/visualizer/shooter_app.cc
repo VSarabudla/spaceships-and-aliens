@@ -16,8 +16,8 @@ void shooter::visualizer::ShooterApp::setup() {
   // initialize player
   player_ = Player(
       glm::vec2(getDisplay()->getWidth() / 2, getDisplay()->getHeight() / 2),
-      player_sprite_->getWidth() / 2, kPlayerMovementSpeed,
-      kPlayerHealthPoints);
+      player_sprite_->getWidth() / 2, kPlayerMovementSpeed, kPlayerHealthPoints,
+      kPlayerBulletColor);
 
   // use time to seed random number generator
   srand(static_cast<int>(std::time(nullptr)));
@@ -27,8 +27,22 @@ void shooter::visualizer::ShooterApp::setup() {
 }
 
 void shooter::visualizer::ShooterApp::update() {
-  // remove bullets outside of application window
+  // handle bullet collisions with player & aliens
+  player_.HandleCollisions(&projectiles_, kAlienBulletColor);
+
   size_t i = 0;
+  for (Alien &alien : aliens_) {
+    alien.HandleCollisions(&projectiles_, kPlayerBulletColor);
+
+    if (alien.GetHealthPoints() <= 0) {
+      aliens_.erase(aliens_.begin() + i);
+      continue;
+    }
+    i++;
+  }
+
+  // remove bullets outside of application window
+  i = 0;
   for (Bullet &bullet : projectiles_) {
     if (bullet.GetPosition().x < 0 || bullet.GetPosition().y < 0 ||
         bullet.GetPosition().x > getWindowWidth() ||
@@ -44,7 +58,8 @@ void shooter::visualizer::ShooterApp::update() {
   if (event_timer_.getSeconds() > kAlienSpawnRate) {
     aliens_.emplace_back(
         glm::vec2(rand() % getWindowWidth(), rand() % getWindowHeight()),
-        alien_sprite_->getWidth() / 2, kAlienMovementSpeed, kAlienHealthPoints);
+        alien_sprite_->getWidth() / 2, kAlienMovementSpeed, kAlienHealthPoints,
+        kAlienBulletColor);
     for (Alien &alien : aliens_) {
       projectiles_.push_back(alien.ShootBullet(player_.GetPosition()));
     }
@@ -72,6 +87,10 @@ void shooter::visualizer::ShooterApp::update() {
 void shooter::visualizer::ShooterApp::draw() {
   ci::Color8u background_color(0, 0, 0);  // black
   ci::gl::clear(background_color);
+
+  if (player_.GetHealthPoints() <= 0) {
+    ci::gl::drawStringCentered("Game Over", glm::vec2(500, 500));
+  }
 
   DrawPlayer();
 

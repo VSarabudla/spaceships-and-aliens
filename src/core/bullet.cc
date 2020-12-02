@@ -22,6 +22,10 @@ glm::vec2 shooter::Bullet::GetPosition() const {
   return position_;
 }
 
+ci::Color shooter::Bullet::GetColor() const {
+  return color_;
+}
+
 float shooter::Bullet::GetRadius() const {
   return radius_;
 }
