@@ -4,7 +4,8 @@
 
 TEST_CASE("Basic bullet movement") {
   SECTION("Bullet with velocity moves correctly") {
-    shooter::Bullet bullet(glm::vec2(500, 500), glm::vec2(-20, -30), 20.0f);
+    shooter::Bullet bullet(glm::vec2(500, 500), glm::vec2(-20, -30), 20.0f,
+                           ci::Color("white"));
     bullet.UpdatePosition();
     glm::vec2 position = bullet.GetPosition();
     REQUIRE(position.x == 480);
@@ -17,7 +18,8 @@ TEST_CASE("Basic bullet movement") {
 
   SECTION("Bullet with no velocity moves correctly") {
     glm::vec2 init_position(500, 500);
-    shooter::Bullet bullet(init_position, glm::vec2(0, 0), 20.0f);
+    shooter::Bullet bullet(init_position, glm::vec2(0, 0), 20.0f,
+                           ci::Color("white"));
     bullet.UpdatePosition();
     REQUIRE(init_position == bullet.GetPosition());
 
