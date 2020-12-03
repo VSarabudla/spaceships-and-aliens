@@ -13,6 +13,11 @@ void shooter::visualizer::ShooterApp::setup() {
   alien_sprite_ =
       ci::gl::Texture::create(loadImage(loadResource("assets/alien1.png")));
 
+  // load player shooting sound
+  ci::audio::SourceFileRef source_file =
+      ci::audio::load(loadResource("assets/player_shooting_sound.mp3"));
+  player_shooting_sound_ = ci::audio::Voice::create(source_file);
+
   // initialize player
   player_ = Player(
       glm::vec2(getDisplay()->getWidth() / 2, getDisplay()->getHeight() / 2),
@@ -112,7 +117,9 @@ void shooter::visualizer::ShooterApp::keyUp(ci::app::KeyEvent event) {
 }
 
 void shooter::visualizer::ShooterApp::mouseDown(ci::app::MouseEvent event) {
+  player_shooting_sound_->stop();
   projectiles_.push_back(player_.ShootBullet(event.getPos()));
+  player_shooting_sound_->start();
 }
 
 void shooter::visualizer::ShooterApp::DrawPlayer() {

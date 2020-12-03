@@ -3,6 +3,7 @@
 
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
+#include "cinder/audio/audio.h"
 #include "cinder/gl/gl.h"
 #include "core/alien.h"
 #include "core/player.h"
@@ -58,6 +59,7 @@ class ShooterApp : public ci::app::App {
 
   Player player_;
   ci::gl::TextureRef player_sprite_;
+  ci::audio::VoiceRef player_shooting_sound_;
   ci::gl::TextureRef alien_sprite_;
   std::vector<Alien> aliens_;
   std::vector<Bullet> projectiles_;
