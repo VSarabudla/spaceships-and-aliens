@@ -36,6 +36,15 @@ class ShooterApp : public ci::app::App {
   // seconds between aliens spawning
   const double kAlienSpawnRate = 2.0;
 
+  /**
+   * Computes the angle between two vectors in radians
+   *
+   * @param a - vector a
+   * @param b - vector b
+   * @return - angle between a & b in radians
+   */
+  static float AngleBetween(const glm::vec2& a, const glm::vec2& b);
+
  private:
   /**
    * Draws player sprite in application window
@@ -46,8 +55,6 @@ class ShooterApp : public ci::app::App {
    * Draws a given alien's sprite in application window
    */
   void DrawAlien(const Alien& alien);
-
-  static float AngleBetween(const glm::vec2& a, const glm::vec2& b);
 
   Player player_;
   ci::gl::TextureRef player_sprite_;

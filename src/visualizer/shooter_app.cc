@@ -8,10 +8,10 @@ shooter::visualizer::ShooterApp::ShooterApp() {
 
 void shooter::visualizer::ShooterApp::setup() {
   // load sprites
-  player_sprite_ =
-      ci::gl ::Texture::create(loadImage(loadResource("spaceship2.png")));
+  player_sprite_ = ci::gl ::Texture::create(
+      loadImage(loadResource("assets/spaceship2.png")));
   alien_sprite_ =
-      ci::gl::Texture::create(loadImage(loadResource("alien1.png")));
+      ci::gl::Texture::create(loadImage(loadResource("assets/alien1.png")));
 
   // initialize player
   player_ = Player(
