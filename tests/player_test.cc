@@ -50,3 +50,58 @@ TEST_CASE("Player bullet shooting") {
     REQUIRE(bullet.GetVelocity() == glm::vec2(2 * 14.1421337, 2 * 14.1421337));
   }
 }
+
+TEST_CASE("Player & bullet collisions") {
+  SECTION(
+      "Single bullet collision removes one HP from Player and erases bullet") {
+    ci::Color bullet_color("white");
+    std::vector<shooter::Bullet> bullets_;
+
+    bullets_.emplace_back(glm::vec2(600, 600), glm::vec2(-20, -30), 20.0f,
+                          bullet_color);
+    bullets_.emplace_back(glm::vec2(1000, 1000), glm::vec2(-20, -30), 20.0f,
+                          bullet_color);
+
+    shooter::Player player(glm::vec2(500, 500), 150, 20.0f, 5, bullet_color);
+
+    player.HandleCollisions(&bullets_, bullet_color);
+
+    REQUIRE(player.GetHealthPoints() == 4);
+    REQUIRE(bullets_.size() == 1);
+    REQUIRE(bullets_.at(0).GetPosition() == glm::vec2(1000, 1000));
+  }
+
+  SECTION(
+      "Single bullet collision removes two HP from Player and erases bullets") {
+    ci::Color bullet_color("white");
+    std::vector<shooter::Bullet> bullets_;
+
+    bullets_.emplace_back(glm::vec2(600, 600), glm::vec2(-20, -30), 20.0f,
+                          bullet_color);
+    bullets_.emplace_back(glm::vec2(400, 400), glm::vec2(-20, -30), 20.0f,
+                          bullet_color);
+
+    shooter::Player player(glm::vec2(500, 500), 150, 20.0f, 5, bullet_color);
+
+    player.HandleCollisions(&bullets_, bullet_color);
+
+    REQUIRE(player.GetHealthPoints() == 3);
+    REQUIRE(bullets_.size() == 0);
+  }
+
+  SECTION(
+      "Player and bullet do not collide, no HP removed and bullet not erased") {
+    ci::Color bullet_color("white");
+    std::vector<shooter::Bullet> bullets_;
+
+    bullets_.emplace_back(glm::vec2(700, 700), glm::vec2(-20, -30), 20.0f,
+                          bullet_color);
+
+    shooter::Player player(glm::vec2(500, 500), 150, 20.0f, 5, bullet_color);
+
+    player.HandleCollisions(&bullets_, bullet_color);
+
+    REQUIRE(player.GetHealthPoints() == 5);
+    REQUIRE(bullets_.size() == 1);
+  }
+}
