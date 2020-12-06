@@ -1,16 +1,14 @@
 #ifndef FINAL_PROJECT_PLAYER_H
 #define FINAL_PROJECT_PLAYER_H
 
-#include "cinder/app/App.h"
-#include "cinder/gl/gl.h"
-#include "core/bullet.h"
+#include "core/character.h"
 
 namespace shooter {
 
 /**
  * Represents a user-controllable player
  */
-class Player {
+class Player : public Character {
  public:
   Player() = default;
 
@@ -27,26 +25,6 @@ class Player {
          int health_points, ci::Color bullet_color);
 
   /**
-   * Moves player upwards based on movement speed
-   */
-  void MoveUp();
-
-  /**
-   * Moves player downwards based on movement speed
-   */
-  void MoveDown();
-
-  /**
-   * Moves player left based on movement speed
-   */
-  void MoveLeft();
-
-  /**
-   * Moves player right based on movement speed
-   */
-  void MoveRight();
-
-  /**
    * Returns a Bullet object traveling in the direction where the user clicks in
    * the application window
    *
@@ -55,27 +33,7 @@ class Player {
    */
   Bullet ShootBullet(const ci::ivec2& mouse_position);
 
-  /**
-   * Handles bullet collisions with player by decrementing HP when struck by a
-   * bullet and removing the bullet
-   *
-   * @param bullets - bullets present in the application
-   * @param color - color of the bullets shot by the aliens
-   */
-  void HandleCollisions(std::vector<Bullet>* bullets,
-                        const ci::Color& bullet_color);
-
-  int GetHealthPoints() const;
-
-  void DecrementHealth();
-
-  glm::vec2 GetPosition() const&;
-
  private:
-  glm::vec2 position_;
-  float radius_;
-  float movement_speed_;
-  int health_points_;
   ci::Color bullet_color_;
 };
 

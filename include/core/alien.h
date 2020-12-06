@@ -1,13 +1,11 @@
 #ifndef FINAL_PROJECT_ALIEN_H
 #define FINAL_PROJECT_ALIEN_H
 
-#include "cinder/app/App.h"
-#include "cinder/gl/gl.h"
-#include "core/bullet.h"
+#include "core/character.h"
 
 namespace shooter {
 
-class Alien {
+class Alien : public Character {
  public:
   /**
    * Creates an Alien object
@@ -22,26 +20,6 @@ class Alien {
         int health_points, ci::Color bullet_color);
 
   /**
-   * Moves alien upwards based on movement speed
-   */
-  void MoveUp();
-
-  /**
-   * Moves alien downwards based on movement speed
-   */
-  void MoveDown();
-
-  /**
-   * Moves alien left based on movement speed
-   */
-  void MoveLeft();
-
-  /**
-   * Moves alien right based on movement speed
-   */
-  void MoveRight();
-
-  /**
    * Returns a Bullet object traveling in the direction of the player in the
    * application window
    *
@@ -50,27 +28,7 @@ class Alien {
    */
   Bullet ShootBullet(const glm::vec2& player_position);
 
-  /**
-   * Handles bullet collisions with alien by decrementing HP when struck by a
-   * bullet and removing the bullet
-   *
-   * @param bullets - bullets present in the application
-   * @param color - color of the bullets shot by the player
-   */
-  void HandleCollisions(std::vector<Bullet>* bullets,
-                        const ci::Color& bullet_color);
-
-  int GetHealthPoints() const;
-
-  void DecrementHealth();
-
-  glm::vec2 GetPosition() const&;
-
  private:
-  glm::vec2 position_;
-  float radius_;
-  float movement_speed_;
-  int health_points_;
   ci::Color bullet_color_;
 };
 
