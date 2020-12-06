@@ -94,7 +94,10 @@ void shooter::visualizer::ShooterApp::draw() {
   ci::gl::clear(background_color);
 
   if (player_.GetHealthPoints() <= 0) {
-    ci::gl::drawStringCentered("Game Over", glm::vec2(500, 500));
+    ci::gl::drawStringCentered(
+        "Game Over", glm::vec2(getWindowWidth() / 2, getWindowHeight() / 2),
+        ci::Color("red"), ci::Font("Inconsolata", getWindowWidth() / 6));
+    return;
   }
 
   DrawPlayer();
