@@ -57,6 +57,11 @@ class ShooterApp : public ci::app::App {
    */
   void DrawAlien(const Alien& alien);
 
+  /**
+   * Draws a heads-up display
+   */
+  void DrawHUD();
+
   Player player_;
   ci::gl::TextureRef player_sprite_;
   ci::audio::VoiceRef player_shooting_sound_;
@@ -65,6 +70,8 @@ class ShooterApp : public ci::app::App {
   std::vector<Bullet> projectiles_;
   std::set<int> held_keys_;
   ci::Timer event_timer_;
+  int score_;
+  ci::Font hud_font_;
 };
 
 }  // namespace visualizer

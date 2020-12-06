@@ -7,6 +7,9 @@ shooter::visualizer::ShooterApp::ShooterApp() {
 }
 
 void shooter::visualizer::ShooterApp::setup() {
+  hud_font_ = ci::Font("Inconsolata", getWindowHeight() / 5);
+  score_ = 0;
+
   // load sprites
   player_sprite_ = ci::gl ::Texture::create(
       loadImage(loadResource("assets/spaceship2.png")));
@@ -41,6 +44,7 @@ void shooter::visualizer::ShooterApp::update() {
 
     if (alien.GetHealthPoints() <= 0) {
       aliens_.erase(aliens_.begin() + i);
+      score_++;
       continue;
     }
     i++;
@@ -93,6 +97,7 @@ void shooter::visualizer::ShooterApp::draw() {
   ci::Color8u background_color(0, 0, 0);  // black
   ci::gl::clear(background_color);
 
+  // draw "Game Over" splash screen
   if (player_.GetHealthPoints() <= 0) {
     ci::gl::drawStringCentered(
         "Game Over", glm::vec2(getWindowWidth() / 2, getWindowHeight() / 2),
@@ -109,6 +114,8 @@ void shooter::visualizer::ShooterApp::draw() {
   for (Bullet &bullet : projectiles_) {
     bullet.Draw();
   }
+
+  DrawHUD();
 }
 
 void shooter::visualizer::ShooterApp::keyDown(ci::app::KeyEvent event) {
@@ -152,6 +159,26 @@ void shooter::visualizer::ShooterApp::DrawAlien(const shooter::Alien &alien) {
   ci::gl::draw(alien_sprite_, glm::vec2((-alien_sprite_->getWidth() / 2),
                                         (-alien_sprite_->getHeight() / 2)));
   ci::gl::popModelMatrix();
+}
+
+void shooter::visualizer::ShooterApp::DrawHUD() {
+  // display player HP
+  ci::gl::drawString(
+      "HP: " + std::to_string(player_.GetHealthPoints()),
+      glm::vec2(hud_font_.getSize(), getWindowHeight() - hud_font_.getSize()),
+      ci::Color("white"), hud_font_);
+
+  // display current score
+  ci::gl::drawStringCentered(
+      "Score: " + std::to_string(score_),
+      glm::vec2(getWindowWidth() / 2, getWindowHeight() - hud_font_.getSize()),
+      ci::Color("white"), hud_font_);
+
+  // display frames per second
+  ci::gl::drawStringRight("FPS: " + std::to_string(getAverageFps()),
+                          glm::vec2(getWindowWidth() - hud_font_.getSize(),
+                                    getWindowHeight() - hud_font_.getSize()),
+                          ci::Color("white"), hud_font_);
 }
 
 // Code derived from:
