@@ -19,7 +19,7 @@ class Bullet {
    * @param color - color of bullet
    */
   Bullet(const glm::vec2 &position, const glm::vec2 &velocity, float radius,
-         ci::Color color);
+         const ci::Color &color);
 
   /**
    * Draws the bullet in the Cinder application

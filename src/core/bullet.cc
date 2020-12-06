@@ -1,7 +1,7 @@
 #include "core/bullet.h"
 
 shooter::Bullet::Bullet(const glm::vec2 &position, const glm::vec2 &velocity,
-                        float radius, ci::Color color)
+                        float radius, const ci::Color &color)
     : position_(position), velocity_(velocity), radius_(radius), color_(color) {
 }
 

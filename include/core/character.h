@@ -7,6 +7,9 @@
 
 namespace shooter {
 
+/**
+ * Represents a character in the application
+ */
 class Character {
  public:
   Character() = default;

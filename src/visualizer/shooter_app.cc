@@ -7,7 +7,7 @@ shooter::visualizer::ShooterApp::ShooterApp() {
 }
 
 void shooter::visualizer::ShooterApp::setup() {
-  hud_font_ = ci::Font("Inconsolata", getWindowHeight() / 5);
+  hud_font_ = ci::Font("URW Gothic", getWindowHeight() / 5);
   score_ = 0;
 
   // load sprites
@@ -48,6 +48,7 @@ void shooter::visualizer::ShooterApp::update() {
       continue;
     }
     i++;
+    alien.MoveTowardsPlayer(player_.GetPosition());
   }
 
   // remove bullets outside of application window
@@ -68,7 +69,7 @@ void shooter::visualizer::ShooterApp::update() {
     aliens_.emplace_back(
         glm::vec2(rand() % getWindowWidth(), rand() % getWindowHeight()),
         alien_sprite_->getWidth() / 2, kAlienMovementSpeed, kAlienHealthPoints,
-        kAlienBulletColor);
+        kAlienBulletColor, kAlienBulletMovementSpeed);
     for (Alien &alien : aliens_) {
       projectiles_.push_back(alien.ShootBullet(player_.GetPosition()));
     }

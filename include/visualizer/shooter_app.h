@@ -31,7 +31,8 @@ class ShooterApp : public ci::app::App {
   const ci::Color kPlayerBulletColor = ci::Color("white");
 
   const int kAlienHealthPoints = 5;
-  const float kAlienMovementSpeed = 15;
+  const float kAlienMovementSpeed = 2;
+  const float kAlienBulletMovementSpeed = 15;
   const ci::Color kAlienBulletColor = ci::Color8u(70, 100, 0);
 
   // seconds between aliens spawning

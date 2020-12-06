@@ -4,7 +4,8 @@
 
 TEST_CASE("Alien movement") {
   SECTION("MoveUp moves alien upward based on movement speed") {
-    shooter::Alien alien(glm::vec2(500, 500), 0, 20.0f, 5, ci::Color("white"));
+    shooter::Alien alien(glm::vec2(500, 500), 0, 20.0f, 5, ci::Color("white"),
+                         15);
 
     alien.MoveUp();
 
@@ -12,7 +13,8 @@ TEST_CASE("Alien movement") {
   }
 
   SECTION("MoveLeft moves alien left based on movement speed") {
-    shooter::Alien alien(glm::vec2(500, 500), 0, 20.0f, 5, ci::Color("white"));
+    shooter::Alien alien(glm::vec2(500, 500), 0, 20.0f, 5, ci::Color("white"),
+                         15);
 
     alien.MoveLeft();
 
@@ -20,7 +22,8 @@ TEST_CASE("Alien movement") {
   }
 
   SECTION("MoveDown moves alien downward based on movement speed") {
-    shooter::Alien alien(glm::vec2(500, 500), 0, 20.0f, 5, ci::Color("white"));
+    shooter::Alien alien(glm::vec2(500, 500), 0, 20.0f, 5, ci::Color("white"),
+                         15);
 
     alien.MoveDown();
 
@@ -28,7 +31,8 @@ TEST_CASE("Alien movement") {
   }
 
   SECTION("MoveRight moves alien right based on movement speed") {
-    shooter::Alien alien(glm::vec2(500, 500), 0, 20.0f, 5, ci::Color("white"));
+    shooter::Alien alien(glm::vec2(500, 500), 0, 20.0f, 5, ci::Color("white"),
+                         15);
 
     alien.MoveRight();
 
@@ -38,7 +42,8 @@ TEST_CASE("Alien movement") {
 
 TEST_CASE("Alien bullet shooting") {
   SECTION("Alien bullet shot correctly") {
-    shooter::Alien alien(glm::vec2(500, 500), 0, 20.0f, 5, ci::Color("white"));
+    shooter::Alien alien(glm::vec2(500, 500), 0, 20.0f, 5, ci::Color("white"),
+                         20);
 
     shooter::Bullet bullet = alien.ShootBullet(glm::vec2(0, 0));
 
@@ -57,7 +62,7 @@ TEST_CASE("Alien & bullet collisions") {
     bullets_.emplace_back(glm::vec2(1000, 1000), glm::vec2(-20, -30), 20.0f,
                           bullet_color);
 
-    shooter::Alien alien(glm::vec2(500, 500), 150, 20.0f, 5, bullet_color);
+    shooter::Alien alien(glm::vec2(500, 500), 150, 20.0f, 5, bullet_color, 15);
 
     alien.HandleCollisions(&bullets_, bullet_color);
 
@@ -76,7 +81,7 @@ TEST_CASE("Alien & bullet collisions") {
     bullets_.emplace_back(glm::vec2(400, 400), glm::vec2(-20, -30), 20.0f,
                           bullet_color);
 
-    shooter::Alien alien(glm::vec2(500, 500), 150, 20.0f, 5, bullet_color);
+    shooter::Alien alien(glm::vec2(500, 500), 150, 20.0f, 5, bullet_color, 15);
 
     alien.HandleCollisions(&bullets_, bullet_color);
 
@@ -92,7 +97,7 @@ TEST_CASE("Alien & bullet collisions") {
     bullets_.emplace_back(glm::vec2(700, 700), glm::vec2(-20, -30), 20.0f,
                           bullet_color);
 
-    shooter::Alien alien(glm::vec2(500, 500), 150, 20.0f, 5, bullet_color);
+    shooter::Alien alien(glm::vec2(500, 500), 150, 20.0f, 5, bullet_color, 15);
 
     alien.HandleCollisions(&bullets_, bullet_color);
 
