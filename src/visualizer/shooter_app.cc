@@ -10,6 +10,10 @@ void shooter::visualizer::ShooterApp::setup() {
   hud_font_ = ci::Font("URW Gothic", getWindowHeight() / 5);
   score_ = 0;
 
+  // load background image
+  background_image_ = ci::gl ::Texture::create(
+      loadImage(loadResource("assets/space_background.png")));
+
   // load sprites
   player_sprite_ = ci::gl ::Texture::create(
       loadImage(loadResource("assets/spaceship2.png")));
@@ -97,6 +101,10 @@ void shooter::visualizer::ShooterApp::update() {
 void shooter::visualizer::ShooterApp::draw() {
   ci::Color8u background_color(0, 0, 0);  // black
   ci::gl::clear(background_color);
+
+  // draw background image
+  ci::gl::color(ci::Color("white"));
+  ci::gl::draw(background_image_, getWindowBounds());
 
   // draw "Game Over" splash screen
   if (player_.GetHealthPoints() <= 0) {
