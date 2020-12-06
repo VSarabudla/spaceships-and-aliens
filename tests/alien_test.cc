@@ -3,40 +3,74 @@
 #include <catch2/catch.hpp>
 
 TEST_CASE("Alien movement") {
+  shooter::Alien alien(glm::vec2(500, 500), 0, 20.0f, 5, ci::Color("white"),
+                       15);
   SECTION("MoveUp moves alien upward based on movement speed") {
-    shooter::Alien alien(glm::vec2(500, 500), 0, 20.0f, 5, ci::Color("white"),
-                         15);
-
     alien.MoveUp();
 
     REQUIRE(alien.GetPosition() == glm::vec2(500, 480));
   }
 
   SECTION("MoveLeft moves alien left based on movement speed") {
-    shooter::Alien alien(glm::vec2(500, 500), 0, 20.0f, 5, ci::Color("white"),
-                         15);
-
     alien.MoveLeft();
 
     REQUIRE(alien.GetPosition() == glm::vec2(480, 500));
   }
 
   SECTION("MoveDown moves alien downward based on movement speed") {
-    shooter::Alien alien(glm::vec2(500, 500), 0, 20.0f, 5, ci::Color("white"),
-                         15);
-
     alien.MoveDown();
 
     REQUIRE(alien.GetPosition() == glm::vec2(500, 520));
   }
 
   SECTION("MoveRight moves alien right based on movement speed") {
-    shooter::Alien alien(glm::vec2(500, 500), 0, 20.0f, 5, ci::Color("white"),
-                         15);
-
     alien.MoveRight();
 
     REQUIRE(alien.GetPosition() == glm::vec2(520, 500));
+  }
+
+  SECTION("MoveTowardsPlayer moves alien left based on player location") {
+    alien.MoveTowardsPlayer(glm::vec2(400, 500));
+
+    REQUIRE(alien.GetPosition() == glm::vec2(480, 500));
+  }
+
+  SECTION("MoveTowardsPlayer moves alien right based on player location") {
+    alien.MoveTowardsPlayer(glm::vec2(600, 500));
+
+    REQUIRE(alien.GetPosition() == glm::vec2(520, 500));
+  }
+
+  SECTION("MoveTowardsPlayer moves alien down based on player location") {
+    alien.MoveTowardsPlayer(glm::vec2(500, 600));
+
+    REQUIRE(alien.GetPosition() == glm::vec2(500, 520));
+  }
+
+  SECTION("MoveTowardsPlayer moves alien up based on player location") {
+    alien.MoveTowardsPlayer(glm::vec2(500, 400));
+
+    REQUIRE(alien.GetPosition() == glm::vec2(500, 480));
+  }
+
+  SECTION("MoveTowardsPlayer does not move alien based on player location") {
+    alien.MoveTowardsPlayer(glm::vec2(500, 500));
+
+    REQUIRE(alien.GetPosition() == glm::vec2(500, 500));
+  }
+
+  SECTION(
+      "MoveTowardsPlayer moves alien down and left based on player location") {
+    alien.MoveTowardsPlayer(glm::vec2(400, 600));
+
+    REQUIRE(alien.GetPosition() == glm::vec2(480, 520));
+  }
+
+  SECTION(
+      "MoveTowardsPlayer moves alien up and right based on player location") {
+    alien.MoveTowardsPlayer(glm::vec2(600, 400));
+
+    REQUIRE(alien.GetPosition() == glm::vec2(520, 480));
   }
 }
 

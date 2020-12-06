@@ -3,37 +3,26 @@
 #include <catch2/catch.hpp>
 
 TEST_CASE("Player movement") {
+  shooter::Player player(glm::vec2(500, 500), 0, 20.0f, 5, ci::Color("white"));
   SECTION("MoveUp moves player upward based on movement speed") {
-    shooter::Player player(glm::vec2(500, 500), 0, 20.0f, 5,
-                           ci::Color("white"));
-
     player.MoveUp();
 
     REQUIRE(player.GetPosition() == glm::vec2(500, 480));
   }
 
   SECTION("MoveLeft moves player left based on movement speed") {
-    shooter::Player player(glm::vec2(500, 500), 0, 20.0f, 5,
-                           ci::Color("white"));
-
     player.MoveLeft();
 
     REQUIRE(player.GetPosition() == glm::vec2(480, 500));
   }
 
   SECTION("MoveDown moves player downward based on movement speed") {
-    shooter::Player player(glm::vec2(500, 500), 0, 20.0f, 5,
-                           ci::Color("white"));
-
     player.MoveDown();
 
     REQUIRE(player.GetPosition() == glm::vec2(500, 520));
   }
 
   SECTION("MoveRight moves player right based on movement speed") {
-    shooter::Player player(glm::vec2(500, 500), 0, 20.0f, 5,
-                           ci::Color("white"));
-
     player.MoveRight();
 
     REQUIRE(player.GetPosition() == glm::vec2(520, 500));
