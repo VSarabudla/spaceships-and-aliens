@@ -7,7 +7,7 @@ shooter::visualizer::ShooterApp::ShooterApp() {
 }
 
 void shooter::visualizer::ShooterApp::setup() {
-  hud_font_ = ci::Font("URW Gothic", getWindowHeight() / 5);
+  hud_font_ = ci::Font("URW Gothic", 100);
   score_ = 0;
 
   // load background image
@@ -30,6 +30,8 @@ void shooter::visualizer::ShooterApp::setup() {
       glm::vec2(getDisplay()->getWidth() / 2, getDisplay()->getHeight() / 2),
       player_sprite_->getWidth() / 2, kPlayerMovementSpeed, kPlayerHealthPoints,
       kPlayerBulletColor);
+  aliens_.clear();
+  projectiles_.clear();
 
   // use time to seed random number generator
   srand(static_cast<int>(std::time(nullptr)));
@@ -94,6 +96,11 @@ void shooter::visualizer::ShooterApp::update() {
       case ci::app::KeyEvent::KEY_d:
         player_.MoveRight();
         break;
+      case ci::app::KeyEvent::KEY_r:
+        if (player_.GetHealthPoints() <= 0) {
+          setup();
+        }
+        break;
     }
   }
 }
@@ -111,6 +118,11 @@ void shooter::visualizer::ShooterApp::draw() {
     ci::gl::drawStringCentered(
         "Game Over", glm::vec2(getWindowWidth() / 2, getWindowHeight() / 2),
         ci::Color("red"), ci::Font("Inconsolata", getWindowWidth() / 6));
+    ci::gl::drawStringCentered(
+        "Press R to play again",
+        glm::vec2(getWindowWidth() / 2,
+                  getWindowHeight() / 2 + getWindowHeight() / 4),
+        ci::Color("white"), hud_font_);
     return;
   }
 
