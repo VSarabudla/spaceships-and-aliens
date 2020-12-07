@@ -7,26 +7,25 @@ shooter::visualizer::ShooterApp::ShooterApp() {
 }
 
 void shooter::visualizer::ShooterApp::setup() {
-  hud_font_ = ci::Font("Open Sans Light", 100);
+  hud_font_ = ci::Font("Arial", 100);
   score_ = 0;
 
   // load background image
-  background_image_ = ci::gl ::Texture::create(
-      loadImage(loadResource("assets/space_background.png")));
+  background_image_ =
+      ci::gl ::Texture::create(loadImage(loadAsset("space_background.png")));
 
   // load sprites
-  player_sprite_ = ci::gl ::Texture::create(
-      loadImage(loadResource("assets/spaceship2.png")));
-  alien_sprite_ =
-      ci::gl::Texture::create(loadImage(loadResource("assets/alien1.png")));
+  player_sprite_ =
+      ci::gl ::Texture::create(loadImage(loadAsset("spaceship2.png")));
+  alien_sprite_ = ci::gl::Texture::create(loadImage(loadAsset("alien1.png")));
 
   // load player shooting sound
   ci::audio::SourceFileRef source_file =
-      ci::audio::load(loadResource("assets/player_shooting_sound.mp3"));
+      ci::audio::load(loadAsset("player_shooting_sound.mp3"));
   player_shooting_sound_ = ci::audio::Voice::create(source_file);
 
   // load alien death sound
-  source_file = ci::audio::load(loadResource("assets/alien_death_sound.mp3"));
+  source_file = ci::audio::load(loadAsset("alien_death_sound.mp3"));
   alien_death_sound_ = ci::audio::Voice::create(source_file);
 
   // initialize player
