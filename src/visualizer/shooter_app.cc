@@ -7,7 +7,7 @@ shooter::visualizer::ShooterApp::ShooterApp() {
 }
 
 void shooter::visualizer::ShooterApp::setup() {
-  hud_font_ = ci::Font("URW Gothic", 100);
+  hud_font_ = ci::Font("Open Sans Light", 100);
   score_ = 0;
 
   // load background image
@@ -24,6 +24,10 @@ void shooter::visualizer::ShooterApp::setup() {
   ci::audio::SourceFileRef source_file =
       ci::audio::load(loadResource("assets/player_shooting_sound.mp3"));
   player_shooting_sound_ = ci::audio::Voice::create(source_file);
+
+  // load alien death sound
+  source_file = ci::audio::load(loadResource("assets/alien_death_sound.mp3"));
+  alien_death_sound_ = ci::audio::Voice::create(source_file);
 
   // initialize player
   player_ = Player(
@@ -49,7 +53,9 @@ void shooter::visualizer::ShooterApp::update() {
     alien.HandleCollisions(&projectiles_, kPlayerBulletColor);
 
     if (alien.GetHealthPoints() <= 0) {
+      alien_death_sound_->stop();
       aliens_.erase(aliens_.begin() + i);
+      alien_death_sound_->start();
       score_++;
       continue;
     }
