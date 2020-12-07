@@ -73,6 +73,7 @@ class ShooterApp : public ci::app::App {
   ci::gl::TextureRef player_sprite_;
   ci::audio::VoiceRef player_shooting_sound_;
   ci::gl::TextureRef alien_sprite_;
+  ci::audio::VoiceRef alien_death_sound_;
   ci::gl::TextureRef background_image_;
   std::vector<Alien> aliens_;
   std::vector<Bullet> projectiles_;
