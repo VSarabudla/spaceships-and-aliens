@@ -49,6 +49,12 @@ class ShooterApp : public ci::app::App {
 
  private:
   /**
+   * Spawns an alien at a border of the application window
+   * @return - Alien to add to game
+   */
+  Alien SpawnAlien();
+
+  /**
    * Draws player sprite in application window
    */
   void DrawPlayer();

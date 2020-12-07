@@ -72,10 +72,7 @@ void shooter::visualizer::ShooterApp::update() {
 
   // spawn aliens periodically that shoot at player
   if (event_timer_.getSeconds() > kAlienSpawnRate) {
-    aliens_.emplace_back(
-        glm::vec2(rand() % getWindowWidth(), rand() % getWindowHeight()),
-        alien_sprite_->getWidth() / 2, kAlienMovementSpeed, kAlienHealthPoints,
-        kAlienBulletColor, kAlienBulletMovementSpeed);
+    aliens_.push_back(SpawnAlien());
     for (Alien &alien : aliens_) {
       projectiles_.push_back(alien.ShootBullet(player_.GetPosition()));
     }
@@ -151,6 +148,48 @@ void shooter::visualizer::ShooterApp::mouseDown(ci::app::MouseEvent event) {
   player_shooting_sound_->stop();
   projectiles_.push_back(player_.ShootBullet(event.getPos()));
   player_shooting_sound_->start();
+}
+
+shooter::Alien shooter::visualizer::ShooterApp::SpawnAlien() {
+  int border = rand() % 4 + 1;
+
+  // bottom border
+  if (border == 1) {
+    return Alien(
+        glm::vec2((rand() % getWindowWidth()),
+                  (rand() % alien_sprite_->getHeight()) +
+                      (getWindowHeight() - alien_sprite_->getHeight())),
+        alien_sprite_->getWidth() / 2, kAlienMovementSpeed, kAlienHealthPoints,
+        kAlienBulletColor, kAlienBulletMovementSpeed);
+  }
+
+  // top border
+  if (border == 2) {
+    return Alien(glm::vec2((rand() % getWindowWidth()),
+                           (rand() % alien_sprite_->getHeight())),
+                 alien_sprite_->getWidth() / 2, kAlienMovementSpeed,
+                 kAlienHealthPoints, kAlienBulletColor,
+                 kAlienBulletMovementSpeed);
+  }
+
+  // right border
+  if (border == 3) {
+    return Alien(glm::vec2((rand() % alien_sprite_->getWidth()) +
+                               (getWindowWidth() - alien_sprite_->getWidth()),
+                           rand() % getWindowHeight()),
+                 alien_sprite_->getWidth() / 2, kAlienMovementSpeed,
+                 kAlienHealthPoints, kAlienBulletColor,
+                 kAlienBulletMovementSpeed);
+  }
+
+  // left border
+  if (border == 4) {
+    return Alien(glm::vec2((rand() % alien_sprite_->getWidth()),
+                           rand() % getWindowHeight()),
+                 alien_sprite_->getWidth() / 2, kAlienMovementSpeed,
+                 kAlienHealthPoints, kAlienBulletColor,
+                 kAlienBulletMovementSpeed);
+  }
 }
 
 void shooter::visualizer::ShooterApp::DrawPlayer() {
