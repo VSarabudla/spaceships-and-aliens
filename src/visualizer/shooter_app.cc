@@ -188,11 +188,11 @@ shooter::Alien shooter::visualizer::ShooterApp::SpawnAlien() {
   }
 
   // left border
-    return Alien(glm::vec2((rand() % alien_sprite_->getWidth()),
-                           rand() % getWindowHeight()),
-                 alien_sprite_->getWidth() / 2, kAlienMovementSpeed,
-                 kAlienHealthPoints, kAlienBulletColor,
-                 kAlienBulletMovementSpeed);
+  return Alien(glm::vec2((rand() % alien_sprite_->getWidth()),
+                         rand() % getWindowHeight()),
+               alien_sprite_->getWidth() / 2, kAlienMovementSpeed,
+               kAlienHealthPoints, kAlienBulletColor,
+               kAlienBulletMovementSpeed);
 }
 
 void shooter::visualizer::ShooterApp::DrawPlayer() {
@@ -238,10 +238,11 @@ void shooter::visualizer::ShooterApp::DrawHUD() {
       ci::Color("white"), hud_font_);
 
   // display frames per second
-  ci::gl::drawStringRight("FPS: " + std::to_string(getAverageFps()),
-                          glm::vec2(getWindowWidth() - hud_font_.getSize(),
-                                    getWindowHeight() - hud_font_.getSize()),
-                          ci::Color("white"), hud_font_);
+  ci::gl::drawStringRight(
+      "FPS: " + std::to_string(static_cast<int>(getAverageFps())),
+      glm::vec2(getWindowWidth() - hud_font_.getSize(),
+                getWindowHeight() - hud_font_.getSize()),
+      ci::Color("white"), hud_font_);
 }
 
 // Code derived from:
