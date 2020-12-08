@@ -188,13 +188,11 @@ shooter::Alien shooter::visualizer::ShooterApp::SpawnAlien() {
   }
 
   // left border
-  if (border == 4) {
     return Alien(glm::vec2((rand() % alien_sprite_->getWidth()),
                            rand() % getWindowHeight()),
                  alien_sprite_->getWidth() / 2, kAlienMovementSpeed,
                  kAlienHealthPoints, kAlienBulletColor,
                  kAlienBulletMovementSpeed);
-  }
 }
 
 void shooter::visualizer::ShooterApp::DrawPlayer() {
