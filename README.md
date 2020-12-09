@@ -1,5 +1,5 @@
 # Spaceships & Aliens
-![](https://i.imgur.com/baaHeha.png)
+![](https://i.imgur.com/mdEXiSV.gif)
 A game where you must fight against an onslaught of alien spaceships with your very own attack spaceship.
 
 ## Dependencies
