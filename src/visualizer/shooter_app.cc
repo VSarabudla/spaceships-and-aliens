@@ -118,10 +118,10 @@ void shooter::visualizer::ShooterApp::draw() {
   // draw "Game Over" splash screen
   if (player_.GetHealthPoints() <= 0) {
     ci::gl::drawStringCentered(
-        "Game Over", glm::vec2(getWindowWidth() / 2, getWindowHeight() / 2),
+        "Game Over.", glm::vec2(getWindowWidth() / 2, getWindowHeight() / 2),
         ci::Color("red"), ci::Font("Inconsolata", getWindowWidth() / 6));
     ci::gl::drawStringCentered(
-        "Press R to play again",
+        "Press R to play againˌ",
         glm::vec2(getWindowWidth() / 2,
                   getWindowHeight() / 2 + getWindowHeight() / 4),
         ci::Color("white"), hud_font_);
@@ -227,19 +227,19 @@ void shooter::visualizer::ShooterApp::DrawAlien(const shooter::Alien &alien) {
 void shooter::visualizer::ShooterApp::DrawHUD() {
   // display player HP
   ci::gl::drawString(
-      "HP: " + std::to_string(player_.GetHealthPoints()),
+      "HP: " + std::to_string(player_.GetHealthPoints()) + "ˌ",
       glm::vec2(hud_font_.getSize(), getWindowHeight() - hud_font_.getSize()),
       ci::Color("white"), hud_font_);
 
   // display current score
   ci::gl::drawStringCentered(
-      "Score: " + std::to_string(score_),
+      "Score: " + std::to_string(score_) + "ˌ",
       glm::vec2(getWindowWidth() / 2, getWindowHeight() - hud_font_.getSize()),
       ci::Color("white"), hud_font_);
 
   // display frames per second
   ci::gl::drawStringRight(
-      "FPS: " + std::to_string(static_cast<int>(getAverageFps())),
+      "FPS: " + std::to_string(static_cast<int>(getAverageFps())) + "ˌ",
       glm::vec2(getWindowWidth() - hud_font_.getSize(),
                 getWindowHeight() - hud_font_.getSize()),
       ci::Color("white"), hud_font_);
