@@ -41,6 +41,9 @@ void shooter::visualizer::ShooterApp::setup() {
 
   // initialize event timer
   event_timer_ = ci::Timer(true);
+
+  // intialize game timer
+  game_timer_ = ci::Timer(true);
 }
 
 void shooter::visualizer::ShooterApp::update() {
@@ -76,7 +79,9 @@ void shooter::visualizer::ShooterApp::update() {
   }
 
   // spawn aliens periodically that shoot at player
-  if (event_timer_.getSeconds() > kAlienSpawnRate) {
+  if (event_timer_.getSeconds() >
+      kAlienSpawnRate - (0.1 * (static_cast<int>(game_timer_.getSeconds()) /
+                                kDifficultyIncreaseRate))) {
     aliens_.push_back(SpawnAlien());
     for (Alien &alien : aliens_) {
       projectiles_.push_back(alien.ShootBullet(player_.GetPosition()));

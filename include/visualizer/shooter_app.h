@@ -27,16 +27,19 @@ class ShooterApp : public ci::app::App {
   void mouseDown(ci::app::MouseEvent event) override;
 
   const int kPlayerHealthPoints = 5;
-  const float kPlayerMovementSpeed = 10;
+  const float kPlayerMovementSpeed = 15;
   const ci::Color kPlayerBulletColor = ci::Color("white");
 
-  const int kAlienHealthPoints = 5;
+  const int kAlienHealthPoints = 3;
   const float kAlienMovementSpeed = 2;
-  const float kAlienBulletMovementSpeed = 15;
+  const float kAlienBulletMovementSpeed = 12;
   const ci::Color kAlienBulletColor = ci::Color8u(70, 100, 0);
 
   // seconds between aliens spawning
   const double kAlienSpawnRate = 2.0;
+
+  // seconds between an increase in alien spawning frequency and shooting
+  const int kDifficultyIncreaseRate = 10;
 
   /**
    * Computes the angle between two vectors in radians
@@ -79,6 +82,7 @@ class ShooterApp : public ci::app::App {
   std::vector<Bullet> projectiles_;
   std::set<int> held_keys_;
   ci::Timer event_timer_;
+  ci::Timer game_timer_;
   int score_;
   ci::Font hud_font_;
 };
