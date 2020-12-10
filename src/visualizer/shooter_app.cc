@@ -123,6 +123,11 @@ void shooter::visualizer::ShooterApp::draw() {
   // draw "Game Over" splash screen
   if (player_.GetHealthPoints() <= 0) {
     ci::gl::drawStringCentered(
+        "Score: " + std::to_string(score_) + "ˌ",
+        glm::vec2(getWindowWidth() / 2,
+                  getWindowHeight() / 2 - hud_font_.getSize()),
+        ci::Color("white"), hud_font_);
+    ci::gl::drawStringCentered(
         "Game Over.", glm::vec2(getWindowWidth() / 2, getWindowHeight() / 2),
         ci::Color("red"), ci::Font("Inconsolata", getWindowWidth() / 6));
     ci::gl::drawStringCentered(
